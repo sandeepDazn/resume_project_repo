@@ -2,7 +2,7 @@ import Apps from "./components/App";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-light">
       <Apps></Apps>
     </div>
   );
