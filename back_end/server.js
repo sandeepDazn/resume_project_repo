@@ -8,7 +8,7 @@ app.get('/' , (req , res)=>{
 
     console.log('testing get api endpoint testing code');
 
-   res.send(' hello world latest change');
+   res.send('just now updated');
 
 })
 
