@@ -6,9 +6,9 @@ const PORT =8000;
 
 app.get('/' , (req , res)=>{
 
-    console.log('testing get api endpoint');
+    console.log('testing get api endpoint testing code');
 
-   res.send('hello from simple server :)')
+   res.send(' hello world latest change');
 
 })
 
