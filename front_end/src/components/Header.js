@@ -12,8 +12,8 @@ const Header = () => {
       </div>
       <div className="text-right">
         <div className="mt-4">
-          <a href="#" className="btn btn-primary mr-3">Login</a>
-          <a href="#" className="btn btn-secondary">Register</a>
+          <a href="https://www.google.com" className="btn btn-primary mr-3">Login</a>
+          <a href="https://www.google.com" className="btn btn-secondary">Register</a>
         </div>
       </div>
     </div>
