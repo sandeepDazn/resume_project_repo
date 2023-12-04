@@ -1,15 +1,23 @@
-const express = require("express");
+import bodyParser from 'body-parser';
+import express from 'express';
+import dotenv from 'dotenv';
+import sequelizeConnection from './config/db.js';
+import userRoutes from './routes/skills.js';
+
+dotenv.config();
+
+const PORT = process.env.PORT || 3000;
+
+sequelizeConnection.sync({ force: false }).then(() => {
+  console.log('Database synced');
+});
 
 const app = express();
 
-const PORT = 8000;
+app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  console.log("testing get api endpoint testing code");
+app.use(bodyParser.urlencoded({ extended: true }));
 
-  res.send("just now updated hello world");
-});
+app.use('/skills',userRoutes);
 
-app.listen(PORT, () => {
-  console.log(`server is running on ${PORT}`);
-});
+app.listen(PORT, ()=>console.log(`server is running at ${PORT}`));
