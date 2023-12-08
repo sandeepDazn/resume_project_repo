@@ -10,6 +10,10 @@ const skill_line_items = db.define('skill_line_items',
         primaryKey:true,
         allowNull:false
     },
+    user_primaryKey: {
+        type:DataTypes.UUID,
+        allowNull:false
+      },
     skill_id:{
         type:DataTypes.UUID,
         allowNull:false,

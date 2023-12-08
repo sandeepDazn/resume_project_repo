@@ -1,33 +1,50 @@
 import skills from "../modal/skills.js";
-import uuid from "../utils/utils.js";
+import { successResponse,errorMesssageResponse,noRecordsFoundResponse } from "../common/responseObjects.js";
+
+// creating skills api
 
 const createSkills = async (req, res) => {
 
   const data = await skills.create(req.body);
 
   try {
-
-    if (!data) {
-
-      return res.status(200).json({ response: "not inserted" });
+    if (data.length ==0) {
+return noRecordsFoundResponse(res, data);
     }
-
-    return res.status(200).json({ response: "successly created" }); 
-
+    return successResponse(res, data);
   } catch (error) {
-
-    return res.status(500).json({ error: error.message });
+    return errorMesssageResponse( res, error);
   }
 };
 
+//  get skills by PK api
+
 const getSkillsbyPK = async (req, res) =>{
     
-    const data = await skills.findByPk(req.body.pk);
+    const data = await skills.findByPk(req.body.id);
     try {
-        return  res.status(200).json({response:"getting records successfully",data:data});
+      if(data.length ==0){
+        return noRecordsFoundResponse(res, data);
+      }
+        return successResponse(res, data);
     } catch (error) {
-        return  res.status(500).json({error:error.message});
+        return errorMesssageResponse(res, error);
     }
 }
 
-export {createSkills,getSkillsbyPK}
+const getSkillsByUserPrimaryKey = async (req,res)=>{
+
+  const data = await skills.findAll({where:{user_primaryKey:req.body.user_primaryKey}});
+  
+  try {
+    if(data.length ==0){
+  return noRecordsFoundResponse(res, data);
+    }
+    return successResponse(res, data);
+  } catch (error) {
+    return errorMesssageResponse(res, error)
+  }
+
+}
+
+export {createSkills,getSkillsbyPK,getSkillsByUserPrimaryKey}

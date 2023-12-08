@@ -1,20 +1,34 @@
 import user from "../modal/user.js";
+import {
+  successResponse,
+  errorMesssageResponse,
+  noRecordsFoundResponse,
+} from "../common/responseObjects.js";
 
-const UserProfileCreating = async (req, res)=>{
+const UserProfileCreating = async (req, res) => {
+  try {
+    const data = await user.create(req.body);
 
-    try {
-
-        const data = await user.create(req.body);
-
-        if(!data){
-            
-            return res.status(404).json({responce:"data is not inserted"})
-        }
-        return res.status(200).json({responce:"data is inserted successfully"});
-
-    } catch (error) {
-        return res.status(500).json({responce:error.message})
+    if (data.length ==0) {
+      return noRecordsFoundResponse(res, data);
     }
-}
+    return successResponse(res, data);
+  } catch (error) {
+    return errorMesssageResponse(res, error);
+  }
+};
 
-export default UserProfileCreating;
+const getUserDetailsByPK = async (req, res) => {
+  try {
+    const data = await user.findByPk(req.body.id);
+
+    if (data.length ==0) {
+      return noRecordsFoundResponse(res, data);
+    }
+
+    return successResponse(res, data);
+  } catch (error) {
+    return errorMesssageResponse(res, error);
+  }
+};
+export { UserProfileCreating, getUserDetailsByPK };

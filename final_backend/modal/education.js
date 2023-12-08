@@ -2,18 +2,26 @@ import db from "../config/connection.js";
 import { DataTypes } from "sequelize";
 import uuid from "../utils/utils.js";
 
-const skills = db.define("skills", {
+const education = db.define("education", {
   id: {
     type: DataTypes.UUID,
-    allowNull: false,
-    defaultValue:()=>uuid(),
     primaryKey: true,
+    defaultValue: () => uuid(),
+    allowNull: false,
   },
   user_primaryKey: {
-    type:DataTypes.UUID,
-    allowNull:false
+    type: DataTypes.UUID,
+    allowNull: false,
   },
-  skills_title: {
+  Institute: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  pass_out_year: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  Percentage: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -23,4 +31,4 @@ const skills = db.define("skills", {
   },
 });
 
-export default skills;
+export default education;

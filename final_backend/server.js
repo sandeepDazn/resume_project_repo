@@ -15,11 +15,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use("/user", userRoutes);
 app.use("/Skills",skillsRouter);
-app.use("/skillLineItems",skill_line_items)
+app.use("/skillLineItems",skill_line_items);
+// app.use("education","");
+// app.use("projects","");
+// app.use("contact","");
 
-const PORT = process.env.PORT || 4000;
+app.get('/',(req, res) => {res.send("testing api")})
 
-db.sync({ force: false ,logging:false})
+const PORT = process.env.PORT || 4001;
+
+db.sync({
+   force: false,
+  logging:false
+})
   .then(() => console.log(`server is synced successfully`))
   .catch((err) => console.log(`getting error ${err}`));
 
