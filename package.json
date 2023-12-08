@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm-run-all --parallel start:server start:react start:secondbackend",
+    "start": "npm-run-all --parallel start:server start:react start:secondbackend start:finalbackend",
     "start:react": "cd front_end && npm start",
     "start:server": "cd back_end && nodemon server.js",
-    "start:secondbackend": "cd second-backend && nodemon server.js"
+    "start:secondbackend": "cd second-backend && nodemon server.js",
+    "start:finalbackend": "cd final_backend && nodemon server.js"
   },
   "repository": {
     "type": "git",
