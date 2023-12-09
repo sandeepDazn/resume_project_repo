@@ -22,7 +22,7 @@ const getUserDetailsByPK = async (req, res) => {
   try {
     const data = await user.findByPk(req.body.id);
 
-    if (data.length ==0) {
+    if (data.length == 0) {
       return noRecordsFoundResponse(res, data);
     }
 

@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import uuid from "../utils/utils";
+import uuid from "../utils/utils.js";
 import db from "../config/connection.js";
 
 const contact = db.define("contact", {
