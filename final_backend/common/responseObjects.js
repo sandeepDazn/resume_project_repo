@@ -16,4 +16,10 @@ const errorMesssageResponse = async (res, data = null) => {
     .json({ responseMessage: "internal server issue", data });
 };
 
-export { successResponse, noRecordsFoundResponse, errorMesssageResponse };
+const successfullyCreated = async (res, data = null) => {
+  return await res
+    .status(200)
+    .json({ responseMessage: "data successfully created", data });
+};
+
+export { successResponse, noRecordsFoundResponse, errorMesssageResponse ,successfullyCreated};

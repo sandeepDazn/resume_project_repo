@@ -2,6 +2,7 @@ import {
   errorMesssageResponse,
   successResponse,
   noRecordsFoundResponse,
+  successfullyCreated
 } from "./responseObjects.js";
 
 const handleResponse = (res, data) => {
@@ -15,5 +16,13 @@ const handleResponse = (res, data) => {
   }
 };
 
+const handleDataInsertResponse = (res, data) =>{
+    try {
+        return successfullyCreated(res,data);
+    } catch (error) {
+        return res.status(500).json({error:error.message});
+    }
+}
 
-export default handleResponse;
+
+export {handleResponse,handleDataInsertResponse};

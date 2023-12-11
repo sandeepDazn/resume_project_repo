@@ -1,50 +1,35 @@
 import skills from "../modal/skills.js";
-import { successResponse,errorMesssageResponse,noRecordsFoundResponse } from "../common/responseObjects.js";
+import {
+  successResponse,
+  errorMesssageResponse,
+  noRecordsFoundResponse,
+} from "../common/responseObjects.js";
+import {
+  handleDataInsertResponse,
+  handleResponse,
+} from "../common/handleResponse.js";
 
 // creating skills api
 
 const createSkills = async (req, res) => {
-
   const data = await skills.create(req.body);
 
-  try {
-    if (data.length ==0) {
-return noRecordsFoundResponse(res, data);
-    }
-    return successResponse(res, data);
-  } catch (error) {
-    return errorMesssageResponse( res, error);
-  }
+  return handleDataInsertResponse(res, data);
 };
 
 //  get skills by PK api
 
-const getSkillsbyPK = async (req, res) =>{
-    
-    const data = await skills.findByPk(req.body.id);
-    try {
-      if(data.length ==0){
-        return noRecordsFoundResponse(res, data);
-      }
-        return successResponse(res, data);
-    } catch (error) {
-        return errorMesssageResponse(res, error);
-    }
-}
+const getSkillsbyPK = async (req, res) => {
+  const data = await skills.findByPk(req.body.id);
+  handleResponse(res, data);
+};
 
-const getSkillsByUserPrimaryKey = async (req,res)=>{
+const getSkillsByUserPrimaryKey = async (req, res) => {
+  const data = await skills.findAll({
+    where: { user_primaryKey: req.body.user_primaryKey },
+  });
 
-  const data = await skills.findAll({where:{user_primaryKey:req.body.user_primaryKey}});
-  
-  try {
-    if(data.length ==0){
-  return noRecordsFoundResponse(res, data);
-    }
-    return successResponse(res, data);
-  } catch (error) {
-    return errorMesssageResponse(res, error)
-  }
+  handleResponse(res, data);
+};
 
-}
-
-export {createSkills,getSkillsbyPK,getSkillsByUserPrimaryKey}
+export { createSkills, getSkillsbyPK, getSkillsByUserPrimaryKey };

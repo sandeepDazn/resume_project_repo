@@ -1,34 +1,17 @@
 import user from "../modal/user.js";
 import {
-  successResponse,
-  errorMesssageResponse,
-  noRecordsFoundResponse,
-} from "../common/responseObjects.js";
+  handleDataInsertResponse,
+  handleResponse,
+} from "../common/handleResponse.js";
 
 const UserProfileCreating = async (req, res) => {
-  try {
-    const data = await user.create(req.body);
+  const data = await user.create(req.body);
 
-    if (data.length ==0) {
-      return noRecordsFoundResponse(res, data);
-    }
-    return successResponse(res, data);
-  } catch (error) {
-    return errorMesssageResponse(res, error);
-  }
+  return handleDataInsertResponse(res, data);
 };
 
 const getUserDetailsByPK = async (req, res) => {
-  try {
-    const data = await user.findByPk(req.body.id);
-
-    if (data.length == 0) {
-      return noRecordsFoundResponse(res, data);
-    }
-
-    return successResponse(res, data);
-  } catch (error) {
-    return errorMesssageResponse(res, error);
-  }
+  const data = await user.findByPk(req.body.id);
+  return handleResponse(res, data);
 };
 export { UserProfileCreating, getUserDetailsByPK };
