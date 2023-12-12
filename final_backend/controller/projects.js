@@ -1,31 +1,50 @@
 import projects from "../modal/projects.js";
 
-import { handleResponse } from "../common/handleResponse.js";
+import {
+  dataGettingHandler,
+  dataSavingResponseHandler,
+  errorExceptionHandler,
+} from "../common/handleResponse.js";
 
 // create projects api
 
 const createProjects = async (req, res) => {
-  const data = await projects.create(req.body);
-  return handleResponse(res, data);
+  await projects
+    .create(req.body)
+    .then((data) =>
+      dataSavingResponseHandler((res, data, "SuccessFully Projects Created"))
+    )
+    .catch((error) =>
+      errorExceptionHandler(res, error.errors, "Internal Server Error")
+    );
 };
 
 // getting data by using primary key
 
 const getProjectsByPk = async (req, res) => {
-  console.log("testing method");
-  const data = await projects.findByPk(req.body.pk);
-
-  return handleResponse(res, data);
+  await projects
+    .findByPk(req.body.pk)
+    .then((data) =>
+      dataGettingHandler(res, data, "Getting Projects SuccessFully")
+    )
+    .catch((error) =>
+      errorExceptionHandler(res, error.errors, "Internal Server Error")
+    );
 };
 
 // getting records by using userPrimarykey
 
 const getProjectsByUserPrimaryKey = async (req, res) => {
-  const data = await projects.findAll({
-    where: { userPrimaryKey: req.body.user_primaryKey },
-  });
-
-  return handleResponse(res, data);
+  await projects
+    .findAll({
+      where: { userPrimaryKey: req.body.user_primaryKey },
+    })
+    .then((data) =>
+      dataGettingHandler(res, data, "Getting Projects SuccessFully")
+    )
+    .catch((error) =>
+      errorExceptionHandler(res, error.errors, "Internal Server Error")
+    );
 };
 
 export { getProjectsByPk, getProjectsByUserPrimaryKey, createProjects };

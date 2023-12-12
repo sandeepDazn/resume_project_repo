@@ -1,28 +1,34 @@
-import {
-  errorMesssageResponse,
-  successResponse,
-  noRecordsFoundResponse,
-  successfullyCreated
-} from "./responseObjects.js";
-
-const handleResponse = (res, data) => {
-  try {
-    if (data.length == 0) {
-      return noRecordsFoundResponse(res, data);
-    }
-    return successResponse(res, data);
-  } catch (error) {
-    return errorMesssageResponse(res, error);
-  }
+const errorExceptionHandler = (res, data, message = "error") => {
+  res.status(500).json({
+    response: message,
+    data: data.map((e) => {
+      const obj = {};
+      const key = e.path;
+      obj[key] = e.message;
+      return obj;
+    }),
+  });
 };
 
-const handleDataInsertResponse = (res, data) =>{
-    try {
-        return successfullyCreated(res,data);
-    } catch (error) {
-        return res.status(500).json({error:error.message});
-    }
-}
+const dataSavingResponseHandler = (res, data, message = "Success") => {
+  res.status(200).json({ response: message, data });
+};
 
+const dataUpdatedHandler = (res, data, message = "Success") => {
+  res.status(200).json({ response: message, data });
+};
 
-export {handleResponse,handleDataInsertResponse};
+const dataGettingHandler = (res, data, message = "Success") => {
+  res.status(200).json({ response: message, data });
+};
+const noDatahandler = (res, data, message = "No Data Found") => {
+  res.status(201).json({ response: message, data });
+};
+
+export {
+  errorExceptionHandler,
+  dataSavingResponseHandler,
+  dataUpdatedHandler,
+  dataGettingHandler,
+  noDatahandler,
+};
