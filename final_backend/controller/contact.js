@@ -32,6 +32,7 @@ const getContactByPk = async (req, res) => {
 // get contacts by user primary key
 
 const getContactByUserPk = async (req, res) => {
+  console.log(req.body)
   await contact
     .findAll({
       where: { user_primaryKey: req.body.user_primaryKey },
