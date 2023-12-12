@@ -11,7 +11,7 @@ const Contact = () => {
         Thank you for visiting my portfolio. If you have any inquiries or would
         like to collaborate, feel free to reach out.
       </p>
-      <ul class="list-unstyled">
+      <ul className="list-unstyled">
         <li>
           Email: <a href="mailto:john.doe@example.com">john.doe@example.com</a>
         </li>
