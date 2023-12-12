@@ -1,9 +1,9 @@
 import projects from "../modal/projects.js";
 
 import {
-  dataGettingHandler,
-  dataSavingResponseHandler,
-  errorExceptionHandler,
+  errorHandler,
+  getDataHandler,
+  saveDataHandler,
 } from "../common/handleResponse.js";
 
 // create projects api
@@ -12,10 +12,10 @@ const createProjects = async (req, res) => {
   await projects
     .create(req.body)
     .then((data) =>
-      dataSavingResponseHandler((res, data, "SuccessFully Projects Created"))
+      saveDataHandler((res, data, "SuccessFully Projects Created"))
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -25,10 +25,10 @@ const getProjectsByPk = async (req, res) => {
   await projects
     .findByPk(req.body.pk)
     .then((data) =>
-      dataGettingHandler(res, data, "Getting Projects SuccessFully")
+      getDataHandler(res, data, "Getting Projects SuccessFully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -40,10 +40,10 @@ const getProjectsByUserPrimaryKey = async (req, res) => {
       where: { userPrimaryKey: req.body.user_primaryKey },
     })
     .then((data) =>
-      dataGettingHandler(res, data, "Getting Projects SuccessFully")
+      getDataHandler(res, data, "Getting Projects SuccessFully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 

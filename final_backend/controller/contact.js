@@ -1,8 +1,8 @@
 import contact from "../modal/contact.js";
 import {
-  dataGettingHandler,
-  dataSavingResponseHandler,
-  errorExceptionHandler,
+  errorHandler,
+  getDataHandler,
+  saveDataHandler,
 } from "../common/handleResponse.js";
 
 // create contacts api
@@ -10,10 +10,10 @@ const createContact = async (req, res) => {
   await contact
     .create(req.body)
     .then((data) =>
-      dataSavingResponseHandler(res, data, "Contact Created Successfully")
+      saveDataHandler(res, data, "Contact Created Successfully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -22,10 +22,10 @@ const getContactByPk = async (req, res) => {
   await contact
     .findAll({ where: { id: req.body.id } })
     .then((data) =>
-      dataGettingHandler(res, data, "Getting Contact Details Sucessfully")
+      getDataHandler(res, data, "Getting Contact Details Sucessfully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -37,10 +37,10 @@ const getContactByUserPrimaryKey = async (req, res) => {
       where: { user_primaryKey: req.body.user_primaryKey },
     })
     .then((data) =>
-      dataGettingHandler(res, data, "Getting Contacts SuccessFully")
+      getDataHandler(res, data, "Getting Contacts SuccessFully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 

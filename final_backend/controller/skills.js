@@ -1,8 +1,8 @@
 import skills from "../modal/skills.js";
 import {
-  dataGettingHandler,
-  dataSavingResponseHandler,
-  errorExceptionHandler,
+  errorHandler,
+  getDataHandler,
+  saveDataHandler,
 } from "../common/handleResponse.js";
 
 // creating skills api
@@ -11,10 +11,10 @@ const createSkills = async (req, res) => {
   await skills
     .create(req.body)
     .then((data) =>
-      dataSavingResponseHandler(res, data, "Skills Successfully Created")
+      saveDataHandler(res, data, "Skills Successfully Created")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -24,10 +24,10 @@ const getSkillsbyPK = async (req, res) => {
   await skills
     .findByPk(req.body.id)
     .then((data) =>
-      dataGettingHandler(res, data, "Getting Skills Successfully")
+      getDataHandler(res, data, "Getting Skills Successfully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server")
+      errorHandler(res, error.errors, "Internal Server")
     );
 };
 
@@ -37,10 +37,10 @@ const getSkillsByUserPrimaryKey = async (req, res) => {
       where: { user_primaryKey: req.body.user_primaryKey },
     })
     .then((data) =>
-      dataGettingHandler(res, data, "Getting Skills Successfully")
+      getDataHandler(res, data, "Getting Skills Successfully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 

@@ -1,8 +1,8 @@
 import skill_line_items from "../modal/skill_line_items.js";
 import {
-  dataGettingHandler,
-  dataSavingResponseHandler,
-  errorExceptionHandler,
+  errorHandler,
+  getDataHandler,
+  saveDataHandler,
 } from "../common/handleResponse.js";
 
 // creating skill line items
@@ -11,14 +11,14 @@ const createSkillLineItems = async (req, res) => {
   await skill_line_items
     .create(req.body)
     .then((data) =>
-      dataSavingResponseHandler(
+      saveDataHandler(
         res,
         data,
         "Skills Line Items Succcessfully Added"
       )
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -28,10 +28,10 @@ const getSkillLineItemsbyPk = async (req, res) => {
   await skill_line_items
     .findAll({ where: { id: req.body.id } })
     .then((data) =>
-      dataGettingHandler(res, data, "Getting SKills Line Items Succcessfully")
+      getDataHandler(res, data, "Getting SKills Line Items Succcessfully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -43,10 +43,10 @@ const getSkillLineItemsBySkillId = async (req, res) => {
       where: { skill_id: req.body.skill_id },
     })
     .then((data) =>
-      dataGettingHandler(res, data, "Getting SKills Line Items Succcessfully")
+      getDataHandler(res, data, "Getting SKills Line Items Succcessfully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 

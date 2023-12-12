@@ -1,8 +1,8 @@
 import education from "../modal/education.js";
 import {
-  dataGettingHandler,
-  dataSavingResponseHandler,
-  errorExceptionHandler,
+  getDataHandler,
+  saveDataHandler,
+  errorHandler,
 } from "../common/handleResponse.js";
 
 // education creation apis
@@ -11,14 +11,14 @@ const createEducation = async (req, res) => {
   await education
     .create(req.body)
     .then((data) =>
-      dataSavingResponseHandler(
+      saveDataHandler(
         res,
         data,
         "Education Data Successfully Created"
       )
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -28,10 +28,10 @@ const getEducationByPk = async (req, res) => {
   await education
     .findAll({ where: { id: req.body.pk } })
     .then((data) =>
-      dataGettingHandler(res, data, "Getting Education data Successfully")
+      getDataHandler(res, data, "Getting Education data Successfully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -43,10 +43,10 @@ const getEducationByUserPk = async (req, res) => {
       where: { user_primaryKey: req.body.user_primaryKey },
     })
     .then((data) =>
-      dataGettingHandler(res, data, "Getting Education Data Successfully")
+      getDataHandler(res, data, "Getting Education Data Successfully")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "Internal Server Error")
+      errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 

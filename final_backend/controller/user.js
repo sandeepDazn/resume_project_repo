@@ -1,9 +1,9 @@
 import user from "../modal/user.js";
 import {
-  errorExceptionHandler,
-  dataSavingResponseHandler,
-  dataGettingHandler,
-  noDatahandler,
+  saveDataHandler,
+  errorHandler,
+  getDataHandler,
+  noDataHandler,
 } from "../common/handleResponse.js";
 
 // creating user profile
@@ -12,10 +12,10 @@ const UserProfileCreating = async (req, res) => {
   await user
     .create(req.body)
     .then((data) =>
-      dataSavingResponseHandler(res, data, "User Successfully Created")
+      saveDataHandler(res, data, "User Successfully Created")
     )
     .catch((error) =>
-      errorExceptionHandler(res, error.errors, "internal server error")
+      errorHandler(res, error.errors, "internal server error")
     );
 };
 
@@ -26,17 +26,17 @@ const getUserDetailsByPK = async (req, res) => {
     .findByPk(req.body.id)
     .then((data) => {
       if (data) {
-        return dataGettingHandler(
+        return getDataHandler(
           res,
           data,
           "Getting User Details Successfully"
         );
       } else {
-       return noDatahandler(res,data,"No Data Found")
+       return noDataHandler(res,data,"No Data Found")
         
       }
     })
-    .catch((error) => errorExceptionHandler(res, error.errors, ""));
+    .catch((error) => errorHandler(res, error.errors, ""));
 };
 
 // pending Api
