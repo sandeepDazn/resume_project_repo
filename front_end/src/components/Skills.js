@@ -8,7 +8,7 @@ const Skills = () => {
   console.log(API_URL, "testing url");
 
   useEffect(() => {
-    Axios.post(`${API_URL}user/getUserDetailsByPK`, {
+    Axios.post(`${API_URL}user/getUserByPk`, {
       id: "0fb888b5-a0f0-4011-a8b8-ff64aaa43be7",
     })
       .then((response) => setUsers(response))
