@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { createContact,getContactByPk,getContactByUserPrimaryKey } from "../controller/contact.js";
+import { createContact,getContactByPk,getContactByUserPk } from "../controller/contact.js";
 
 const contactRouter = Router();
 
 contactRouter.post("/CreateContact", createContact);
 contactRouter.post("/getContactByPk", getContactByPk);
-contactRouter.post("/getContactByUserPrimaryKey", getContactByUserPrimaryKey);
+contactRouter.post("/getContactByUserPk", getContactByUserPk);
 
 export default contactRouter;

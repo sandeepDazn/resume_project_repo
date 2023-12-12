@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { createSkills, getSkillsbyPK,getSkillsByUserPrimaryKey } from "../controller/skills.js";
+import { createSkill, getSkillsByPk,getSkillsByUserPk } from "../controller/skills.js";
 
 const skillsRouter = Router();
 
-skillsRouter.post('/skillsCreation',createSkills);
-skillsRouter.post("/SkillsfindByPK",getSkillsbyPK);
-skillsRouter.post("/getSkillsByUserPrimaryKey",getSkillsByUserPrimaryKey);
+skillsRouter.post('/createSkill',createSkill);
+skillsRouter.post("/getSkillsByPk",getSkillsByPk);
+skillsRouter.post("/getSkillsByUserPk",getSkillsByUserPk);
 
 export default skillsRouter;

@@ -8,14 +8,12 @@ import {
 
 // create projects api
 
-const createProjects = async (req, res) => {
-  await projects
-    .create(req.body)
-    .then((data) =>
-      saveDataHandler((res, data, "SuccessFully Projects Created"))
-    )
-    .catch((error) =>
-      errorHandler(res, error.errors, "Internal Server Error")
+const createProject = async (req, res) => {
+
+  await projects.create(req.body).then((data) =>
+     saveDataHandler(res, data, "SuccessFully Projects Created")
+    ).catch((error) =>
+    errorHandler(res, error.errors, "Internal Server Error")
     );
 };
 
@@ -23,21 +21,22 @@ const createProjects = async (req, res) => {
 
 const getProjectsByPk = async (req, res) => {
   await projects
-    .findByPk(req.body.pk)
+    .findByPk(req.body.id)
     .then((data) =>
       getDataHandler(res, data, "Getting Projects SuccessFully")
     )
     .catch((error) =>
-      errorHandler(res, error.errors, "Internal Server Error")
-    );
+    errorHandler(res, error.errors, "Internal Server Error")
+    )
 };
 
 // getting records by using userPrimarykey
 
-const getProjectsByUserPrimaryKey = async (req, res) => {
-  await projects
+const getProjectsByUserPk = async (req, res) => {
+  console.log(req.body)
+   await projects
     .findAll({
-      where: { userPrimaryKey: req.body.user_primaryKey },
+      where: { user_primaryKey: req.body.user_primaryKey },
     })
     .then((data) =>
       getDataHandler(res, data, "Getting Projects SuccessFully")
@@ -47,4 +46,4 @@ const getProjectsByUserPrimaryKey = async (req, res) => {
     );
 };
 
-export { getProjectsByPk, getProjectsByUserPrimaryKey, createProjects };
+export { getProjectsByPk, getProjectsByUserPk, createProject };

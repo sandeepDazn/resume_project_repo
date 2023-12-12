@@ -8,7 +8,7 @@ import {
 
 // creating user profile
 
-const UserProfileCreating = async (req, res) => {
+const userCreation = async (req, res) => {
   await user
     .create(req.body)
     .then((data) =>
@@ -21,7 +21,7 @@ const UserProfileCreating = async (req, res) => {
 
 // getting userDetails by PK
 
-const getUserDetailsByPK = async (req, res) => {
+const getUserByPk = async (req, res) => {
   await user
     .findByPk(req.body.id)
     .then((data) => {
@@ -45,4 +45,4 @@ const userLogin = async (req, res) => {
   const data = await user.findAll({ where: { password: req.body.password } });
 
 };
-export { UserProfileCreating, getUserDetailsByPK };
+export { userCreation, getUserByPk };

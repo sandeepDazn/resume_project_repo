@@ -7,7 +7,7 @@ import {
 
 // creating skill line items
 
-const createSkillLineItems = async (req, res) => {
+const createSkillLineItem = async (req, res) => {
   await skill_line_items
     .create(req.body)
     .then((data) =>
@@ -24,7 +24,8 @@ const createSkillLineItems = async (req, res) => {
 
 //  getting results by PK
 
-const getSkillLineItemsbyPk = async (req, res) => {
+const getSkillLineItembyPk = async (req, res) => {
+  console.log(req.body)
   await skill_line_items
     .findAll({ where: { id: req.body.id } })
     .then((data) =>
@@ -37,7 +38,7 @@ const getSkillLineItemsbyPk = async (req, res) => {
 
 // getting skill line items by skill id
 
-const getSkillLineItemsBySkillId = async (req, res) => {
+const getSkillLineItemsBySkillPk = async (req, res) => {
   await skill_line_items
     .findAll({
       where: { skill_id: req.body.skill_id },
@@ -51,7 +52,7 @@ const getSkillLineItemsBySkillId = async (req, res) => {
 };
 
 export {
-  createSkillLineItems,
-  getSkillLineItemsbyPk,
-  getSkillLineItemsBySkillId,
+  createSkillLineItem,
+  getSkillLineItembyPk,
+  getSkillLineItemsBySkillPk,
 };

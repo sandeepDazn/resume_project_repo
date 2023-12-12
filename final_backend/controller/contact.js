@@ -31,7 +31,7 @@ const getContactByPk = async (req, res) => {
 
 // get contacts by user primary key
 
-const getContactByUserPrimaryKey = async (req, res) => {
+const getContactByUserPk = async (req, res) => {
   await contact
     .findAll({
       where: { user_primaryKey: req.body.user_primaryKey },
@@ -44,4 +44,4 @@ const getContactByUserPrimaryKey = async (req, res) => {
     );
 };
 
-export { createContact, getContactByUserPrimaryKey, getContactByPk };
+export { createContact, getContactByUserPk, getContactByPk };

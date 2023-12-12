@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { UserProfileCreating, getUserDetailsByPK } from "../controller/user.js";
+import { userCreation, getUserByPk } from "../controller/user.js";
 
 const userRoutes = Router();
 
-userRoutes.post("/profileCreating", UserProfileCreating);
-userRoutes.post('/getUserDetailsByPK',getUserDetailsByPK);
+userRoutes.post("/userCreation", userCreation);
+userRoutes.post('/getUserByPk',getUserByPk);
 
 export default userRoutes;

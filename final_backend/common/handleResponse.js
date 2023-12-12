@@ -1,7 +1,7 @@
 // errorExceptionHandler
 
-const errorHandler = (res, data, message = "error") => {
-  res.status(500).json({
+const errorHandler = async (res, data, message = "error") => {
+  await res.status(500).json({
     response: message,
     data: data.map((e) => {
       const obj = {};
@@ -13,21 +13,21 @@ const errorHandler = (res, data, message = "error") => {
 };
 
 //    dataSavingResponseHandler
-const saveDataHandler = (res, data, message = "Success") => {
-  res.status(200).json({ response: message, data });
+const saveDataHandler = async (res, data, message = "Success") => {
+ await res.status(200).json({ response: message, data });
 };
 
 // dataUpdatedHandler
-const updateDataHandler = (res, data, message = "Success") => {
-  res.status(200).json({ response: message, data });
+const updateDataHandler = async (res, data, message = "Success") => {
+ await res.status(200).json({ response: message, data });
 };
 
 // dataGettingHandler
-const getDataHandler = (res, data, message = "Success") => {
-  res.status(200).json({ response: message, data });
+const getDataHandler = async (res, data, message = "Success") => {
+ await res.status(200).json({ response: message, data });
 };
-const noDataHandler = (res, data, message = "No Data Found") => {
-  res.status(201).json({ response: message, data });
+const noDataHandler = async (res, data, message = "No Data Found") => {
+  await res.status(201).json({ response: message, data });
 };
 
 export {

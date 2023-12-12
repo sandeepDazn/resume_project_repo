@@ -1,17 +1,17 @@
 import Router from "express";
 import {
-  createSkillLineItems,
-  getSkillLineItemsbyPk,
-  getSkillLineItemsBySkillId,
+  createSkillLineItem,
+  getSkillLineItembyPk,
+  getSkillLineItemsBySkillPk,
 } from "../controller/skill_line_items.js";
 
 const skill_line_items = Router();
 
-skill_line_items.post("/createSkillLineItems", createSkillLineItems);
-skill_line_items.post("/getSkillLineItemsbyPk", getSkillLineItemsbyPk);
+skill_line_items.post("/createSkillLineItem", createSkillLineItem);
+skill_line_items.post("/getSkillLineItembyPk", getSkillLineItembyPk);
 skill_line_items.post(
-  "/getSkillLineitemsBySkillId",
-  getSkillLineItemsBySkillId
+  "/getSkillLineItemsBySkillPk",
+  getSkillLineItemsBySkillPk
 );
 
 export default skill_line_items;

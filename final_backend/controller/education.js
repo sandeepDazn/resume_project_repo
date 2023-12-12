@@ -7,7 +7,7 @@ import {
 
 // education creation apis
 
-const createEducation = async (req, res) => {
+const educationCreation = async (req, res) => {
   await education
     .create(req.body)
     .then((data) =>
@@ -26,7 +26,7 @@ const createEducation = async (req, res) => {
 
 const getEducationByPk = async (req, res) => {
   await education
-    .findAll({ where: { id: req.body.pk } })
+    .findAll({ where: { id: req.body.id } })
     .then((data) =>
       getDataHandler(res, data, "Getting Education data Successfully")
     )
@@ -50,4 +50,4 @@ const getEducationByUserPk = async (req, res) => {
     );
 };
 
-export { getEducationByPk, createEducation, getEducationByUserPk };
+export { getEducationByPk, educationCreation, getEducationByUserPk };

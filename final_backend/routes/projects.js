@@ -1,14 +1,14 @@
 import { Router } from "express";
 import {
-  createProjects,
+  createProject,
   getProjectsByPk,
-  getProjectsByUserPrimaryKey,
+  getProjectsByUserPk,
 } from "../controller/projects.js";
 
 const projectRoutes = new Router();
 
-projectRoutes.post("/createProjects", createProjects);
+projectRoutes.post("/createProject", createProject);
 projectRoutes.post("/getProjectsByPk", getProjectsByPk);
-projectRoutes.post("/getProjectsByUserPrimaryKey", getProjectsByUserPrimaryKey);
+projectRoutes.post("/getProjectsByUserPk", getProjectsByUserPk);
 
 export default projectRoutes;

@@ -7,7 +7,8 @@ import {
 
 // creating skills api
 
-const createSkills = async (req, res) => {
+const createSkill = async (req, res) => {
+  console.log(req.body);
   await skills
     .create(req.body)
     .then((data) =>
@@ -20,7 +21,7 @@ const createSkills = async (req, res) => {
 
 //  get skills by PK api
 
-const getSkillsbyPK = async (req, res) => {
+const getSkillsByPk = async (req, res) => {
   await skills
     .findByPk(req.body.id)
     .then((data) =>
@@ -31,7 +32,7 @@ const getSkillsbyPK = async (req, res) => {
     );
 };
 
-const getSkillsByUserPrimaryKey = async (req, res) => {
+const getSkillsByUserPk = async (req, res) => {
   await skills
     .findAll({
       where: { user_primaryKey: req.body.user_primaryKey },
@@ -44,4 +45,4 @@ const getSkillsByUserPrimaryKey = async (req, res) => {
     );
 };
 
-export { createSkills, getSkillsbyPK, getSkillsByUserPrimaryKey };
+export { createSkill, getSkillsByPk, getSkillsByUserPk };

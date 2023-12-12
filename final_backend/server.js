@@ -16,16 +16,16 @@ dotenv.config();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 
 // routes
 
-app.use("/user", userRoutes);
+app.use("/User", userRoutes);
 app.use("/Skills",skillsRouter);
-app.use("/skillLineItems",skill_line_items);
-app.use("/projects",projectRoutes);
-app.use("/education",educationRoutes);
-app.use("/contact",contactRouter);
+app.use("/SkillLineItems",skill_line_items);
+app.use("/Projects",projectRoutes);
+app.use("/Education",educationRoutes);
+app.use("/Contact",contactRouter);
 
 app.get('/',(req, res) => {res.send("testing api")});
 
