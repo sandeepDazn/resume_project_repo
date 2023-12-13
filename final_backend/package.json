@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "generate-swagger": "node swagger.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "mysql2": "^3.6.5",
     "nodemon": "^3.0.2",
     "sequelize": "^6.35.1",
+    "sequelize-cli": "^6.6.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1"
