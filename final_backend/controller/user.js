@@ -9,14 +9,12 @@ import {
 // creating user profile
 
 const userCreation = async (req, res) => {
-  await user
-    .create(req.body)
-    .then((data) =>
-      saveDataHandler(res, data, "User Successfully Created")
-    )
-    .catch((error) =>
-      errorHandler(res, error.errors, "internal server error")
-    );
+  try{
+    await user.create(req.body);
+    return  saveDataHandler(res, data, "User Successfully Created")
+  }catch(error){
+    errorHandler(res, error.errors, "internal server error")
+  }
 };
 
 // getting userDetails by PK
